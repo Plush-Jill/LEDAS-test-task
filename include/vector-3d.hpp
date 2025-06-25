@@ -15,9 +15,12 @@ namespace ltt {
         double m_z_;
 
     public:
+
         explicit Vector3D(double x, double y, double z) noexcept(true);
+        Vector3D(const Vector3D& other) noexcept(true);
         Vector3D(std::initializer_list<double> xyz_values) noexcept(false);
         Vector3D& operator=(const Vector3D &other) noexcept(true);
+        bool operator==(const Vector3D &other) const noexcept(true);
         Vector3D operator+(const Vector3D &other) const noexcept(true);
         Vector3D operator-(const Vector3D &other) const noexcept(true);
 

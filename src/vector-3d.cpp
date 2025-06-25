@@ -10,6 +10,12 @@ namespace ltt {
     Vector3D::Vector3D(const double x, const double y, const double z) noexcept(true)
         : m_x_(x), m_y_(y), m_z_(z) {}
 
+    Vector3D::Vector3D(const Vector3D &other) noexcept(true) {
+        m_x_ = other.m_x_;
+        m_y_ = other.m_y_;
+        m_z_ = other.m_z_;
+    }
+
     Vector3D::Vector3D(const std::initializer_list<double> xyz_values) {
         if (xyz_values.size() != 3) {
             throw std::invalid_argument("Initializer list must contain exactly three elements.");
@@ -27,6 +33,10 @@ namespace ltt {
             m_z_ = other.m_z_;
         }
         return *this;
+    }
+
+    bool Vector3D::operator==(const Vector3D &other) const noexcept(true) {
+        return m_x_ == other.m_x_ && m_y_ == other.m_y_ && m_z_ == other.m_z_;
     }
 
     Vector3D Vector3D::operator+(const Vector3D &other) const noexcept(true) {
