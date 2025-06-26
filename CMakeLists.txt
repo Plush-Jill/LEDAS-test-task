@@ -13,10 +13,11 @@ else()
 endif()
 
 add_library(${lib_name} OBJECT src/vector-3d.cpp src/segment-3d.cpp)
-add_executable(${exe_name} src/main.cpp)
-target_link_libraries(${exe_name} ${lib_name})
 target_include_directories(${lib_name} PRIVATE ${CMAKE_SOURCE_DIR}/include)
 target_link_directories(${lib_name} PRIVATE ${CMAKE_SOURCE_DIR}/include)
+
+add_executable(${exe_name} src/main.cpp)
+target_link_libraries(${exe_name} ${lib_name})
 
 if(POLICY CMP0135)
     cmake_policy(SET CMP0135 NEW)

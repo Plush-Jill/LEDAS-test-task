@@ -2,9 +2,9 @@
 // Created by bocka on 2025-06-25.
 //
 
-#include "vector-3d.hpp"
-#include <stdexcept>
 #include <cmath>
+#include <stdexcept>
+#include "vector-3d.hpp"
 
 namespace ltt {
     Vector3D::Vector3D(const double x, const double y, const double z) noexcept(true)
@@ -63,8 +63,16 @@ namespace ltt {
         return std::sqrt(m_x_ * m_x_ + m_y_ * m_y_ + m_z_ * m_z_);
     }
 
+    Vector3D & Vector3D::operator*(const double multiplier) const noexcept(true) {
+        return *new Vector3D(
+            m_x_ * multiplier,
+            m_y_ * multiplier,
+            m_z_ * multiplier
+        );
+    }
 
-    Vector3D vectorProduct(const Vector3D& a, const Vector3D& b) {
+
+    Vector3D vectorProduct(const Vector3D& a, const Vector3D& b) noexcept(true) {
         return Vector3D(
             a.getY() * b.getZ() - a.getZ() * b.getY(),
             a.getZ() * b.getX() - a.getX() * b.getZ(),
@@ -72,7 +80,7 @@ namespace ltt {
         );
     }
 
-    double scalarProduct(const Vector3D &a, const Vector3D &b) {
+    double scalarProduct(const Vector3D &a, const Vector3D &b) noexcept(true) {
         return a.getX() * b.getX() + a.getY() * b.getY() + a.getZ() * b.getZ();
     }
 } // ltt
